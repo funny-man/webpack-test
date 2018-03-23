@@ -34,36 +34,36 @@
 //     return sample;
 
 // }, this);
-console.log(3)
-define(['jquery', 'com/carousel', 'com/gotop', 'com/waterfall'], function ($, Carousel, GoTop, Waterfall) {
-    //轮播
-    var clock
-    var _carousel = new Carousel($('.carousel'))
-    _carousel.init()
-    _carousel.bind()
-    _carousel.autoPlay()
-    $(window).resize(function () {
-        console.log('改变大小')
-        if (clock) {
-            clearTimeout(clock)
-        }
-        clock = setTimeout(function () {
-            console.log('执行')
-            _carousel.stopPlay()
-            _carousel.off()
-            _carousel = new Carousel($('.carousel'))
-            _carousel.init()
-            _carousel.bind()
-            _carousel.autoPlay()
-            _waterfall.layout()
-        }, 800);
-    })
-    //gotop
-    var _gotop = new GoTop($('body'))
-    _gotop.createNode();
-    _gotop.bindEvent();
-    //瀑布流
-    var _waterfall = new Waterfall($('.content'))
-    _waterfall.init()
-    _waterfall.layout()
-});
+var Carousel = require('../com/carousel')
+var GoTop = require('../com/gotop')
+var Waterfall = require('../com/waterfall')
+var $ = require('../lib/bower_components/jquery/dist/jquery.js')
+var clock
+var _carousel = new Carousel($('.carousel'))
+_carousel.init()
+_carousel.bind()
+_carousel.autoPlay()
+$(window).resize(function () {
+    console.log('改变大小')
+    if (clock) {
+        clearTimeout(clock)
+    }
+    clock = setTimeout(function () {
+        console.log('执行')
+        _carousel.stopPlay()
+        _carousel.off()
+        _carousel = new Carousel($('.carousel'))
+        _carousel.init()
+        _carousel.bind()
+        _carousel.autoPlay()
+        _waterfall.layout()
+    }, 800);
+})
+//gotop
+var _gotop = new GoTop($('body'))
+_gotop.createNode();
+_gotop.bindEvent();
+//瀑布流
+var _waterfall = new Waterfall($('.content'))
+_waterfall.init()
+_waterfall.layout()
